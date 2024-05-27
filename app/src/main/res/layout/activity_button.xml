@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ButtonActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.wave.MultiWaveHeader
+            android:id="@+id/waveHeader"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            app:mwhCloseColor="@color/Iceberg"
+            app:mwhStartColor="@color/Ocean_Blue"
+            app:mwhWaveHeight="60dp" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:popupTheme="@style/Theme.DapSonTien.PopupOverlay" />
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/gateText"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="Cổng 1"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:textColor="@color/Ocean_Blue"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/status"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:text="Cổng chưa kết nối"
+            android:textStyle="bold"
+            android:textColor="@color/Gray"/>
+
+
+        <com.github.angads25.toggle.widget.LabeledSwitch
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="125dp"
+            android:textSize="30sp"
+            app:colorBorder="#00c4a6"
+            app:colorOn="#00c4a6"
+            app:on="false"
+            app:textOff="OFF"
+            app:textOn="ON" />
+    </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
