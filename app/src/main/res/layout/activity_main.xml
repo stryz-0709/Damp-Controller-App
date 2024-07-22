@@ -76,6 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:text="Cổng 1"
                     android:padding="15dp" />
 
@@ -84,6 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate1"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 2"
                     android:padding="15dp" />
@@ -93,6 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate2"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 3"
                     android:padding="15dp" />
@@ -103,6 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_below="@id/gate1"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:text="Cổng 4"
                     android:padding="15dp" />
 
@@ -112,6 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate4"
                     android:layout_below="@id/gate2"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 5"
                     android:padding="15dp" />
@@ -122,6 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate5"
                     android:layout_below="@id/gate3"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 6"
                     android:padding="15dp" />
@@ -132,6 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_below="@id/gate4"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:text="Cổng 7"
                     android:padding="15dp" />
 
@@ -141,6 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate7"
                     android:layout_below="@id/gate5"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 8"
                     android:padding="15dp" />
@@ -151,6 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate8"
                     android:layout_below="@id/gate6"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 9"
                     android:padding="15dp" />
@@ -161,6 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_below="@id/gate7"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:text="Cổng 10"
                     android:padding="15dp" />
 
@@ -170,6 +180,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate10"
                     android:layout_below="@id/gate8"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 11"
                     android:padding="15dp" />
@@ -180,6 +191,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate11"
                     android:layout_below="@id/gate9"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 12"
                     android:padding="15dp" />
@@ -189,6 +201,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/gate10"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 13"
                     android:padding="15dp" />
@@ -199,6 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate13"
                     android:layout_below="@id/gate11"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 14"
                     android:padding="15dp" />
@@ -209,6 +223,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate14"
                     android:layout_below="@id/gate12"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 15"
                     android:padding="15dp" />
@@ -218,6 +233,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/gate13"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 16"
                     android:padding="15dp" />
@@ -228,6 +244,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate16"
                     android:layout_below="@id/gate14"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 17"
                     android:padding="15dp" />
@@ -238,6 +255,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate17"
                     android:layout_below="@id/gate15"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 18"
                     android:padding="15dp" />
@@ -248,6 +266,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_below="@id/gate16"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:text="Cổng 19"
                     android:padding="15dp" />
 
@@ -257,6 +276,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate19"
                     android:layout_below="@id/gate17"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 20"
                     android:padding="15dp" />
@@ -267,6 +287,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate20"
                     android:layout_below="@id/gate18"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 21"
                     android:padding="15dp" />
@@ -277,6 +298,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_below="@id/gate19"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:text="Cổng 22"
                     android:padding="15dp" />
 
@@ -286,6 +308,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate22"
                     android:layout_below="@id/gate20"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 23"
                     android:padding="15dp" />
@@ -296,6 +319,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate23"
                     android:layout_below="@id/gate21"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 24"
                     android:padding="15dp" />
@@ -306,6 +330,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_below="@id/gate24"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:text="Cổng 25"
                     android:padding="15dp" />
 
@@ -315,6 +340,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate25"
                     android:layout_below="@id/gate23"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 26"
                     android:padding="15dp" />
@@ -325,6 +351,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate26"
                     android:layout_below="@id/gate24"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 27"
                     android:padding="15dp" />
@@ -335,6 +362,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_below="@id/gate25"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:text="Cổng 28"
                     android:padding="15dp" />
 
@@ -344,6 +372,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate28"
                     android:layout_below="@id/gate26"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:layout_margin="8dp"
                     android:text="Cổng 29"
                     android:padding="15dp" />
@@ -355,8 +384,18 @@
                     android:layout_toEndOf="@id/gate29"
                     android:layout_below="@id/gate27"
                     android:layout_margin="8dp"
+                    android:backgroundTint="@color/Ocean_Blue"
                     android:text="Cổng 30"
                     android:padding="15dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/blankCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/gate30"
+                    android:backgroundTint="@android:color/transparent"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="0dp" />
             </RelativeLayout>
 
 

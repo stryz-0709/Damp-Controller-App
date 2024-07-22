@@ -74,4 +74,10 @@ dependencies {
 
     implementation 'androidx.core:core:1.13.1'
 
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.github.abdularis:TapHoldUpButton:0.1.2'
+
+    implementation 'org.nanohttpd:nanohttpd:2.3.1'
+
+
 }

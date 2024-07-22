@@ -27,55 +27,469 @@
             android:background="@android:color/transparent"
             app:popupTheme="@style/Theme.DapSonTien.PopupOverlay" />
 
-    <LinearLayout
-        android:id="@+id/layout"
-        android:layout_below="@id/toolbar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar">
 
-        <TextView
-            android:id="@+id/gateText"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:text="Cổng 1"
-            android:textStyle="bold"
-            android:textSize="30dp"
-            android:textColor="@color/Ocean_Blue"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/status"
-            android:textSize="20sp"
-            android:layout_gravity="center_horizontal"
-            android:text="Cổng chưa kết nối"
-            android:textStyle="bold"
-            android:textColor="@color/Gray"/>
-
-
-        <com.github.angads25.toggle.widget.LabeledSwitch
-            android:id="@+id/button"
+        <LinearLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="125dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginRight="125dp"
-            android:textSize="30sp"
-            app:colorBorder="#00c4a6"
-            app:colorOn="#00c4a6"
-            app:on="false"
-            app:textOff="OFF"
-            app:textOn="ON" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/gateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="Cổng 1"
+                android:textColor="@color/Ocean_Blue"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/status"
+                android:textSize="20sp"
+                android:layout_gravity="center_horizontal"
+                android:text=""
+                android:textStyle="bold"
+                android:textColor="@color/Gray"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/gate_card">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="5dp"
+                        app:cardElevation="2dp"
+                        android:id="@+id/inside_level_card"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="0dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="90dp"
+                            android:id="@+id/inside_amount"
+                            android:layout_gravity="bottom">
+
+                            <com.scwang.wave.MultiWaveHeader
+                                android:id="@+id/waveHeader1"
+                                android:layout_width="120dp"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginBottom="0dp"
+                                android:scaleY="-1"
+                                app:mwhCloseColor="@color/Light_Aquamarine"
+                                app:mwhColorAlpha="0.45"
+                                app:mwhGradientAngle="45"
+                                app:mwhProgress="1"
+                                app:mwhVelocity="1"
+                                app:mwhWaveHeight="10dp"
+                                app:mwhWaves="MultiWave" />
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/inside_text"
+                        android:layout_below="@id/inside_level_card"
+                        android:layout_centerInParent="true"
+                        android:textSize="20sp"
+                        android:text="Mương"
+                        android:textStyle="bold"
+                        android:textColor="@color/Gray"/>
+
+                </RelativeLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="8dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    app:cardElevation="2dp"
+                    android:layout_toStartOf="@id/gate_card"
+                    android:id="@+id/in_level"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_alignParentBottom="true"
+                            app:cardElevation="0dp"
+                            android:id="@+id/no"
+                            android:backgroundTint="#347C17"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_above="@id/no"
+                            app:cardElevation="0dp"
+                            android:id="@+id/low"
+                            android:layout_weight="1"
+                            android:backgroundTint="#41A317"
+                            app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_above="@id/low"
+                            app:cardElevation="0dp"
+                            android:id="@+id/med"
+                            android:layout_weight="1"
+                            android:backgroundTint="#4CC552"
+                            app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_above="@id/med"
+                            app:cardElevation="0dp"
+                            android:id="@+id/high"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/Algae_Green"
+                            app:cardCornerRadius="0dp"/>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="20dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    app:cardElevation="2dp"
+                    android:id="@+id/gate_card"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="20dp"
+                        android:layout_height="180dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="top"
+                        android:background="@color/gray200"
+                        android:id="@+id/gate_level"
+                        android:layout_weight="1">
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="8dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    app:cardElevation="2dp"
+                    android:id="@+id/out_level"
+                    android:layout_toEndOf="@id/gate_card"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_alignParentBottom="true"
+                            app:cardElevation="0dp"
+                            android:id="@+id/no2"
+                            android:backgroundTint="#347C17"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_above="@id/no2"
+                            app:cardElevation="0dp"
+                            android:id="@+id/low2"
+                            android:layout_weight="1"
+                            android:backgroundTint="#41A317"
+                            app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_above="@id/low2"
+                            app:cardElevation="0dp"
+                            android:id="@+id/med2"
+                            android:layout_weight="1"
+                            android:backgroundTint="#4CC552"
+                            app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_above="@id/med2"
+                            app:cardElevation="0dp"
+                            android:id="@+id/high2"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/Algae_Green"
+                            app:cardCornerRadius="0dp"/>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/gate_card">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="5dp"
+                        app:cardElevation="2dp"
+                        android:id="@+id/outside_level_card"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="0dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="90dp"
+                            android:id="@+id/outside_amount"
+                            android:layout_gravity="bottom">
+
+                            <com.scwang.wave.MultiWaveHeader
+                                android:id="@+id/waveHeader2"
+                                android:layout_width="120dp"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentBottom="true"
+                                android:scaleY="-1"
+                                app:mwhVelocity="1"
+                                app:mwhProgress="1"
+                                app:mwhGradientAngle="45"
+                                app:mwhWaveHeight="10dp"
+                                app:mwhColorAlpha="0.45"
+                                app:mwhCloseColor="@color/Light_Aquamarine"
+                                app:mwhWaves="MultiWave"/>
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/outside_text"
+                        android:layout_below="@id/outside_level_card"
+                        android:layout_centerInParent="true"
+                        android:textSize="20sp"
+                        android:text="Sông"
+                        android:textStyle="bold"
+                        android:textColor="@color/Gray"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_text"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:layout_gravity="center_horizontal"
+                android:text="Nút điều khiển cổng"
+                android:textStyle="bold"
+                android:textColor="@color/Gray"/>
+
+            <com.github.angads25.toggle.widget.LabeledSwitch
+                android:id="@+id/autoButton"
+                android:layout_width="150sp"
+                android:layout_height="60sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:colorBorder="#00c4a6"
+                app:colorOn="#00c4a6"
+                app:on="false"
+                app:textOff="TỰ ĐỘNG"
+                app:textOn="THỦ CÔNG" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bottom_page"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/height_tab"
+                    android:layout_centerHorizontal="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/height_text"
+                        android:layout_marginTop="20dp"
+                        android:textSize="18sp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Chênh lệch mực nước tối đa"
+                        android:layout_centerVertical="true"
+                        android:textStyle="bold"
+                        android:textColor="@color/Gray"/>
+
+                    <RelativeLayout
+                        android:layout_width="80dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/height_button"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_toEndOf="@id/height_text"
+                        android:background="@drawable/edit_unfocused">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:imeOptions="actionDone"
+                            android:id="@+id/height_value"
+                            android:background="@drawable/edit_unfocused"
+                            android:paddingStart="15dp"
+                            android:inputType="number"
+                            android:text="0"
+                            android:layout_centerVertical="true"
+                            android:textSize="20sp"
+                            android:textColor="@color/Black"/>
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/baseline_height_24" />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_tab"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/centerShim"
+                    android:layout_width="60dp"
+                    android:layout_height="90dp"
+                    android:layout_centerInParent="true"
+                    android:backgroundTint="@android:color/transparent"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="0dp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/centerShim"
+                    android:backgroundTint="@android:color/transparent">
+
+                    <com.aar.tapholdupbutton.TapHoldUpButton
+                        android:id="@+id/openGate"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        app:thub_circleColor="#DDDDDD"
+                        app:thub_circleColorOhHold="#FA1A1A"
+                        app:thub_circleGap="3dp"
+                        app:thub_ringColor="#DDDDDD"
+                        app:thub_ringStrokeWidth="2dp" />
+
+                    <TextView
+                        android:id="@+id/openGateText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/openGate"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Mở cổng"
+                        android:textColor="@color/Gray"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/centerShim"
+                    android:backgroundTint="@android:color/transparent">
+
+
+                    <com.aar.tapholdupbutton.TapHoldUpButton
+                        android:id="@+id/closeGate"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+
+                        app:thub_circleColor="#DDDDDD"
+                        app:thub_circleColorOhHold="#FA1A1A"
+                        app:thub_circleGap="3dp"
+                        app:thub_ringColor="#DDDDDD"
+                        app:thub_ringStrokeWidth="2dp" />
+
+                    <TextView
+                        android:id="@+id/closeGateText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerInParent="true"
+                        android:layout_below="@id/closeGate"
+                        android:text="Đóng cổng"
+                        android:textColor="@color/Gray"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/blankCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/closeGateText"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardCornerRadius="0dp"
+                        app:cardElevation="0dp" />
+                </RelativeLayout>
+
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/button_page"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

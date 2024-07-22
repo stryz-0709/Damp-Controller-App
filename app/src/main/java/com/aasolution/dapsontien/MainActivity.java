@@ -1,6 +1,13 @@
 package com.aasolution.dapsontien;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +17,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -17,9 +25,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -55,11 +71,15 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Log.d("BUTTON","PRESSED");
                     Intent intent = new Intent(MainActivity.this, ButtonActivity.class);
-                    intent.putExtra("button_text", "Cổng " + (index + 1));
+                    intent.putExtra("button_text", String.valueOf(index + 1));
+                    intent.putExtra("button_number", index + 1);
                     startActivity(intent);
                 }
             });
         }
 
     }
+
+
+
 }
