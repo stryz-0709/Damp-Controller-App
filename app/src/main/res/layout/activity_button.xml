@@ -14,7 +14,7 @@
         <com.scwang.wave.MultiWaveHeader
             android:id="@+id/waveHeader"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:layout_alignParentTop="true"
             app:mwhCloseColor="@color/Iceberg"
             app:mwhStartColor="@color/Ocean_Blue"
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="0dp"
                 android:text="Cổng 1"
                 android:textColor="@color/Ocean_Blue"
                 android:textSize="30dp"
@@ -62,6 +62,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content">
 
                 <RelativeLayout
@@ -70,10 +71,8 @@
                     android:layout_toStartOf="@id/gate_card">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="120dp"
-                        android:layout_height="180dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginStart="5dp"
+                        android:layout_width="160dp"
+                        android:layout_height="280dp"
                         app:cardElevation="2dp"
                         android:id="@+id/inside_level_card"
                         android:layout_weight="1"
@@ -87,7 +86,7 @@
 
                             <com.scwang.wave.MultiWaveHeader
                                 android:id="@+id/waveHeader1"
-                                android:layout_width="120dp"
+                                android:layout_width="160dp"
                                 android:layout_height="match_parent"
                                 android:layout_alignParentBottom="true"
                                 android:layout_marginBottom="0dp"
@@ -111,16 +110,15 @@
                         android:layout_below="@id/inside_level_card"
                         android:layout_centerInParent="true"
                         android:textSize="20sp"
-                        android:text="Mương"
+                        android:text="Ao"
                         android:textStyle="bold"
                         android:textColor="@color/Gray"/>
 
                 </RelativeLayout>
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="8dp"
-                    android:layout_height="180dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_width="12dp"
+                    android:layout_height="280dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="15dp"
                     app:cardElevation="2dp"
@@ -135,47 +133,82 @@
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="35dp"
                             android:layout_alignParentBottom="true"
                             app:cardElevation="0dp"
-                            android:id="@+id/no"
-                            android:backgroundTint="#347C17"
+                            android:id="@+id/state0_1"
+                            android:backgroundTint="@color/Dark_Forrest_Green"
                             android:layout_weight="1"
                             app:cardCornerRadius="0dp"/>
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_above="@id/no"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state0_1"
                             app:cardElevation="0dp"
-                            android:id="@+id/low"
+                            android:id="@+id/state1_1"
+                            android:layout_weight="1"
+                            android:backgroundTint="#347C17"
+                            app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state1_1"
+                            app:cardElevation="0dp"
+                            android:id="@+id/state2_1"
                             android:layout_weight="1"
                             android:backgroundTint="#41A317"
                             app:cardCornerRadius="0dp"/>
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_above="@id/low"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state2_1"
                             app:cardElevation="0dp"
-                            android:id="@+id/med"
+                            android:id="@+id/state3_1"
                             android:layout_weight="1"
                             android:backgroundTint="#4CC552"
                             app:cardCornerRadius="0dp"/>
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_above="@id/med"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state3_1"
                             app:cardElevation="0dp"
-                            android:id="@+id/high"
+                            android:id="@+id/state4_1"
                             android:layout_weight="1"
                             android:backgroundTint="@color/Algae_Green"
+                            app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state4_1"
+                            app:cardElevation="0dp"
+                            android:id="@+id/state5_1"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/Mint_green"
+                            app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state5_1"
+                            app:cardElevation="0dp"
+                            android:id="@+id/state6_1"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/Light_Jade"
+                            app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state6_1"
+                            app:cardElevation="0dp"
+                            android:id="@+id/state7_1"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/White"
                             app:cardCornerRadius="0dp"/>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="20dp"
-                    android:layout_height="180dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_width="30dp"
+                    android:layout_height="280dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="15dp"
                     app:cardElevation="2dp"
@@ -184,8 +217,8 @@
                     app:cardCornerRadius="0dp">
 
                     <RelativeLayout
-                        android:layout_width="20dp"
-                        android:layout_height="180dp"
+                        android:layout_width="30dp"
+                        android:layout_height="280dp"
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="top"
                         android:background="@color/gray200"
@@ -197,9 +230,8 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="8dp"
-                    android:layout_height="180dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_width="12dp"
+                    android:layout_height="280dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="15dp"
                     app:cardElevation="2dp"
@@ -214,40 +246,78 @@
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="35dp"
                             android:layout_alignParentBottom="true"
                             app:cardElevation="0dp"
-                            android:id="@+id/no2"
-                            android:backgroundTint="#347C17"
+                            android:id="@+id/state0_2"
+                            android:backgroundTint="@color/Dark_Forrest_Green"
                             android:layout_weight="1"
                             app:cardCornerRadius="0dp"/>
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_above="@id/no2"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state0_2"
                             app:cardElevation="0dp"
-                            android:id="@+id/low2"
+                            android:id="@+id/state1_2"
+                            android:layout_weight="1"
+                            android:backgroundTint="#347C17"
+                            app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state1_2"
+                            app:cardElevation="0dp"
+                            android:id="@+id/state2_2"
                             android:layout_weight="1"
                             android:backgroundTint="#41A317"
                             app:cardCornerRadius="0dp"/>
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_above="@id/low2"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state2_2"
                             app:cardElevation="0dp"
-                            android:id="@+id/med2"
+                            android:id="@+id/state3_2"
                             android:layout_weight="1"
                             android:backgroundTint="#4CC552"
                             app:cardCornerRadius="0dp"/>
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_above="@id/med2"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state3_2"
                             app:cardElevation="0dp"
-                            android:id="@+id/high2"
+                            android:id="@+id/state4_2"
                             android:layout_weight="1"
                             android:backgroundTint="@color/Algae_Green"
                             app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state4_2"
+                            app:cardElevation="0dp"
+                            android:id="@+id/state5_2"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/Mint_green"
+                            app:cardCornerRadius="0dp"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state5_2"
+                            app:cardElevation="0dp"
+                            android:id="@+id/state6_2"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/Light_Jade"
+                            app:cardCornerRadius="0dp"/>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/state7_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_above="@id/state6_2"
+                            android:layout_marginBottom="1dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/White"
+                            app:cardCornerRadius="0dp"
+                            app:cardElevation="0dp" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -257,10 +327,8 @@
                     android:layout_toEndOf="@id/gate_card">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="120dp"
-                        android:layout_height="180dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="5dp"
+                        android:layout_width="160dp"
+                        android:layout_height="280dp"
                         app:cardElevation="2dp"
                         android:id="@+id/outside_level_card"
                         android:layout_weight="1"
@@ -274,7 +342,7 @@
 
                             <com.scwang.wave.MultiWaveHeader
                                 android:id="@+id/waveHeader2"
-                                android:layout_width="120dp"
+                                android:layout_width="160dp"
                                 android:layout_height="match_parent"
                                 android:layout_alignParentBottom="true"
                                 android:scaleY="-1"
@@ -307,7 +375,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_text"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:textSize="20sp"
                 android:layout_gravity="center_horizontal"
                 android:text="Nút điều khiển cổng"
@@ -316,11 +384,11 @@
 
             <com.github.angads25.toggle.widget.LabeledSwitch
                 android:id="@+id/autoButton"
-                android:layout_width="150sp"
+                android:layout_width="140sp"
                 android:layout_height="60sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:colorBorder="#00c4a6"
                 app:colorOn="#00c4a6"
@@ -333,56 +401,119 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/bottom_page"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="0dp">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:id="@+id/height_tab"
                     android:layout_centerHorizontal="true">
 
-                    <TextView
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/height_text"
-                        android:layout_marginTop="20dp"
-                        android:textSize="18sp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Chênh lệch mực nước tối đa"
-                        android:layout_centerVertical="true"
-                        android:textStyle="bold"
-                        android:textColor="@color/Gray"/>
+                        android:id="@+id/height_tab_text"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/height_text"
+                            android:layout_marginTop="20dp"
+                            android:textSize="22sp"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Mực chênh lệch"
+                            android:layout_centerVertical="true"
+                            android:textStyle="bold"
+                            android:textColor="@color/Gray"/>
+
+                        <RelativeLayout
+                            android:layout_width="80dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="40dp"
+                            android:id="@+id/height_button"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_toEndOf="@id/height_text"
+                            android:background="@drawable/edit_unfocused">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:imeOptions="actionDone"
+                                android:id="@+id/height_value"
+                                android:background="@drawable/edit_unfocused"
+                                android:paddingStart="15dp"
+                                android:inputType="number"
+                                android:text="0"
+                                android:layout_centerVertical="true"
+                                android:textSize="20sp"
+                                android:textColor="@color/Black"/>
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="6dp"
+                                android:background="@drawable/baseline_height_24" />
+                        </RelativeLayout>
+                    </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="80dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="10dp"
-                        android:id="@+id/height_button"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_toEndOf="@id/height_text"
-                        android:background="@drawable/edit_unfocused">
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/inside_tab_text"
+                        android:layout_marginTop="20dp"
+                        android:layout_below="@id/height_tab_text"
+                        android:layout_centerHorizontal="true">
 
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:imeOptions="actionDone"
-                            android:id="@+id/height_value"
-                            android:background="@drawable/edit_unfocused"
-                            android:paddingStart="15dp"
-                            android:inputType="number"
-                            android:text="0"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/inside_max_text"
+                            android:layout_marginTop="20dp"
+                            android:textSize="22sp"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Mực cao nhất"
                             android:layout_centerVertical="true"
-                            android:textSize="20sp"
-                            android:textColor="@color/Black"/>
+                            android:textStyle="bold"
+                            android:textColor="@color/Gray"/>
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="6dp"
-                            android:background="@drawable/baseline_height_24" />
+                        <RelativeLayout
+                            android:layout_width="80dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="60dp"
+                            android:id="@+id/inside_max_button"
+                            android:layout_below="@id/inside_max_button"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_toEndOf="@id/inside_max_text"
+                            android:background="@drawable/edit_unfocused">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:imeOptions="actionDone"
+                                android:id="@+id/inside_max_value"
+                                android:background="@drawable/edit_unfocused"
+                                android:paddingStart="15dp"
+                                android:inputType="number"
+                                android:text="4"
+                                android:layout_centerVertical="true"
+                                android:textSize="20sp"
+                                android:textColor="@color/Black"/>
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="6dp"
+                                android:background="@drawable/baseline_height_24" />
+                        </RelativeLayout>
                     </RelativeLayout>
+
+
 
                 </RelativeLayout>
 
@@ -410,8 +541,8 @@
 
                     <com.aar.tapholdupbutton.TapHoldUpButton
                         android:id="@+id/openGate"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
                         app:thub_circleColor="#DDDDDD"
                         app:thub_circleColorOhHold="#FA1A1A"
                         app:thub_circleGap="3dp"
@@ -441,8 +572,8 @@
 
                     <com.aar.tapholdupbutton.TapHoldUpButton
                         android:id="@+id/closeGate"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
 
                         app:thub_circleColor="#DDDDDD"
                         app:thub_circleColorOhHold="#FA1A1A"
