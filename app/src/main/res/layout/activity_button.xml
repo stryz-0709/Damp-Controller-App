@@ -371,30 +371,37 @@
                 </RelativeLayout>
             </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
                 android:layout_height="wrap_content"
-                android:id="@+id/button_text"
+                android:layout_width="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="20sp"
-                android:layout_gravity="center_horizontal"
-                android:text="Nút điều khiển cổng"
-                android:textStyle="bold"
-                android:textColor="@color/Gray"/>
+                android:layout_gravity="center">
 
-            <com.github.angads25.toggle.widget.LabeledSwitch
-                android:id="@+id/autoButton"
-                android:layout_width="140sp"
-                android:layout_height="60sp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:colorBorder="#00c4a6"
-                app:colorOn="#00c4a6"
-                app:on="false"
-                app:textOff="TỰ ĐỘNG"
-                app:textOn="THỦ CÔNG" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_text"
+                    android:textSize="20sp"
+                    android:layout_centerVertical="true"
+                    android:text="Nút điều khiển cổng"
+                    android:textStyle="bold"
+                    android:textColor="@color/Gray"/>
+
+                <com.github.angads25.toggle.widget.LabeledSwitch
+                    android:id="@+id/autoButton"
+                    android:layout_width="140sp"
+                    android:layout_height="60sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/button_text"
+                    android:layout_centerVertical="true"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:colorBorder="#00c4a6"
+                    app:colorOn="#00c4a6"
+                    app:on="false"
+                    app:textOff="TỰ ĐỘNG"
+                    app:textOn="THỦ CÔNG" />
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -406,7 +413,7 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:id="@+id/height_tab"
                     android:layout_centerHorizontal="true">
 
@@ -421,9 +428,9 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/height_text"
                             android:layout_marginTop="20dp"
-                            android:textSize="22sp"
+                            android:textSize="20sp"
                             android:layout_gravity="center_horizontal"
-                            android:text="Mực chênh lệch"
+                            android:text="Mực chênh lệch H1"
                             android:layout_centerVertical="true"
                             android:textStyle="bold"
                             android:textColor="@color/Gray"/>
@@ -431,24 +438,22 @@
                         <RelativeLayout
                             android:layout_width="80dp"
                             android:layout_height="50dp"
-                            android:layout_marginStart="40dp"
+                            android:layout_marginStart="20dp"
                             android:id="@+id/height_button"
                             android:layout_gravity="center_horizontal"
                             android:layout_toEndOf="@id/height_text"
                             android:background="@drawable/edit_unfocused">
 
-                            <EditText
+                            <Spinner
+                                android:id="@+id/height_value"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:imeOptions="actionDone"
-                                android:id="@+id/height_value"
                                 android:background="@drawable/edit_unfocused"
-                                android:paddingStart="15dp"
-                                android:inputType="number"
-                                android:text="0"
+                                android:paddingStart="0dp"
                                 android:layout_centerVertical="true"
                                 android:textSize="20sp"
-                                android:textColor="@color/Black"/>
+                                android:textColor="@color/Black"
+                                android:spinnerMode="dropdown" />
 
                             <ImageView
                                 android:layout_width="30dp"
@@ -464,7 +469,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/inside_tab_text"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:layout_below="@id/height_tab_text"
                         android:layout_centerHorizontal="true">
 
@@ -473,7 +478,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/inside_max_text"
                             android:layout_marginTop="20dp"
-                            android:textSize="22sp"
+                            android:textSize="20sp"
                             android:layout_gravity="center_horizontal"
                             android:text="Mực cao nhất"
                             android:layout_centerVertical="true"
@@ -483,25 +488,23 @@
                         <RelativeLayout
                             android:layout_width="80dp"
                             android:layout_height="50dp"
-                            android:layout_marginStart="60dp"
+                            android:layout_marginStart="70dp"
                             android:id="@+id/inside_max_button"
                             android:layout_below="@id/inside_max_button"
                             android:layout_gravity="center_horizontal"
                             android:layout_toEndOf="@id/inside_max_text"
                             android:background="@drawable/edit_unfocused">
 
-                            <EditText
+                            <Spinner
+                                android:id="@+id/inside_max_value"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:imeOptions="actionDone"
-                                android:id="@+id/inside_max_value"
                                 android:background="@drawable/edit_unfocused"
-                                android:paddingStart="15dp"
-                                android:inputType="number"
-                                android:text="4"
+                                android:paddingStart="0dp"
                                 android:layout_centerVertical="true"
                                 android:textSize="20sp"
-                                android:textColor="@color/Black"/>
+                                android:textColor="@color/Black"
+                                android:spinnerMode="dropdown" />
 
                             <ImageView
                                 android:layout_width="30dp"
@@ -513,34 +516,171 @@
                         </RelativeLayout>
                     </RelativeLayout>
 
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/height2_tab_text"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/height_tab_text"
+                        android:layout_centerHorizontal="true">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/height2_text"
+                            android:layout_marginTop="20dp"
+                            android:textSize="20sp"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Mực chênh lệch H2"
+                            android:layout_centerVertical="true"
+                            android:textStyle="bold"
+                            android:textColor="@color/Gray"/>
 
+                        <RelativeLayout
+                            android:layout_width="80dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="20dp"
+                            android:id="@+id/height2_button"
+                            android:layout_below="@id/height2_button"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_toEndOf="@id/height2_text"
+                            android:background="@drawable/edit_unfocused">
+
+                            <Spinner
+                                android:id="@+id/height2_value"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/edit_unfocused"
+                                android:paddingStart="0dp"
+                                android:layout_centerVertical="true"
+                                android:textSize="20sp"
+                                android:textColor="@color/Black"
+                                android:spinnerMode="dropdown" />
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="6dp"
+                                android:background="@drawable/baseline_height_24" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/height_auto_tab_text"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/height_auto_text"
+                            android:layout_marginTop="20dp"
+                            android:textSize="20sp"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Mực chênh lệch H1"
+                            android:layout_centerVertical="true"
+                            android:textStyle="bold"
+                            android:textColor="@color/Gray"/>
+
+                        <RelativeLayout
+                            android:layout_width="80dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="20dp"
+                            android:id="@+id/height_auto_button"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_toEndOf="@id/height_auto_text"
+                            android:background="@drawable/edit_unfocused">
+
+                            <Spinner
+                                android:id="@+id/height_auto_value"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/edit_unfocused"
+                                android:paddingStart="0dp"
+                                android:layout_centerVertical="true"
+                                android:textSize="20sp"
+                                android:textColor="@color/Black"
+                                android:spinnerMode="dropdown" />
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="6dp"
+                                android:background="@drawable/baseline_height_24" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/autoSwitchTab"
+                    android:layout_below="@id/height_tab"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="@android:color/transparent">
+                    <com.github.angads25.toggle.widget.LabeledSwitch
+                        android:id="@+id/autoSwitch"
+                        android:layout_width="120sp"
+                        android:layout_height="60sp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:colorBorder="#00c4a6"
+                        app:colorOn="#00c4a6"
+                        app:on="false"
+                        app:textOff="TẮT"
+                        app:textOn="BẬT" />
                 </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_tab"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/centerShim"
-                    android:layout_width="60dp"
-                    android:layout_height="90dp"
-                    android:layout_centerInParent="true"
-                    android:backgroundTint="@android:color/transparent"
-                    app:cardCornerRadius="0dp"
-                    app:cardElevation="0dp" />
+                android:layout_below="@id/height_tab"
+                android:layout_marginTop="10dp">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toStartOf="@id/centerShim"
+                    android:id="@+id/startSwitchTab"
+                    android:layout_marginBottom="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="@android:color/transparent">
+                    <com.github.angads25.toggle.widget.LabeledSwitch
+                        android:id="@+id/startSwitch"
+                        android:layout_width="120sp"
+                        android:layout_height="60sp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:colorBorder="#00c4a6"
+                        app:colorOn="#00c4a6"
+                        app:on="false"
+                        app:textOff="END"
+                        app:textOn="START" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/startSwitchTab"
+                    android:id="@+id/gateButtons"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="@android:color/transparent">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/openGateButton"
                     android:backgroundTint="@android:color/transparent">
 
                     <com.aar.tapholdupbutton.TapHoldUpButton
-                        android:id="@+id/openGate"
+                        android:id="@+id/getWater"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         app:thub_circleColor="#DDDDDD"
@@ -550,13 +690,13 @@
                         app:thub_ringStrokeWidth="2dp" />
 
                     <TextView
-                        android:id="@+id/openGateText"
+                        android:id="@+id/getWaterText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/openGate"
+                        android:layout_below="@id/getWater"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="10dp"
-                        android:text="Mở cổng"
+                        android:text="Lấy nước"
                         android:textColor="@color/Gray"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -566,41 +706,34 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/centerShim"
+                    android:layout_toEndOf="@id/openGateButton"
+                    android:layout_marginStart="40dp"
                     android:backgroundTint="@android:color/transparent">
 
-
                     <com.aar.tapholdupbutton.TapHoldUpButton
-                        android:id="@+id/closeGate"
+                        android:id="@+id/removeWater"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
-
                         app:thub_circleColor="#DDDDDD"
                         app:thub_circleColorOhHold="#FA1A1A"
                         app:thub_circleGap="3dp"
+                        android:layout_centerHorizontal="true"
                         app:thub_ringColor="#DDDDDD"
                         app:thub_ringStrokeWidth="2dp" />
 
                     <TextView
-                        android:id="@+id/closeGateText"
+                        android:id="@+id/removeWaterText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/removeWater"
                         android:layout_centerInParent="true"
-                        android:layout_below="@id/closeGate"
-                        android:text="Đóng cổng"
+                        android:layout_marginTop="10dp"
+                        android:text="Tháo nước"
                         android:textColor="@color/Gray"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/blankCard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_below="@id/closeGateText"
-                        android:backgroundTint="@android:color/transparent"
-                        app:cardCornerRadius="0dp"
-                        app:cardElevation="0dp" />
+                </RelativeLayout>
                 </RelativeLayout>
 
 

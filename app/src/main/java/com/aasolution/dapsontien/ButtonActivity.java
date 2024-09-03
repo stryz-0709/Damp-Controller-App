@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -23,8 +24,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
@@ -57,18 +62,20 @@ import okhttp3.Response;
 
 public class ButtonActivity extends AppCompatActivity {
     private TextView gateText, statusText;
-    private TapHoldUpButton openGate, closeGate;
-    private LabeledSwitch autoButton;
-    private RelativeLayout insideLevel, outsideLevel, gateLevel, heightTab, buttonPage, buttonTab;
-    private EditText heightValue, insideMaxValue;
-    private static final int AUTO = -100, MANUAL = -101, PHONEMANUAL = -102, OPENING = -110, CLOSING = -111, STOPPED = -112;
+    private TapHoldUpButton getWater, removeWater;
+    private LabeledSwitch autoButton, startSwitch, autoSwitch;
+    private RelativeLayout insideLevel, outsideLevel, gateLevel, bottomPage, buttonPage, insideTabText, heightTabText, height2TabText, heightAutoTabText, autoSwitchTab, buttonTab, gateButtons;
+    private Spinner heightValue, insideMaxValue, height2Value, heightAutoValue;
     private int buttonNumber = -1;
-    private int state = AUTO;
+    private String state = "AUTO";
+    private String autoState = "OFF";
     private final OkHttpClient client = new OkHttpClient();
     private Toast currentToast;
 
     private boolean isHeightFocused = false;
+    private boolean isHeight2Focused = false;
     private boolean isInMaxFocused = false;
+    private boolean isHeightAutoFocused = false;
 
     ProgressDialog progressDialog;
 
@@ -110,13 +117,31 @@ public class ButtonActivity extends AppCompatActivity {
         insideLevel = findViewById(R.id.inside_amount);
         outsideLevel = findViewById(R.id.outside_amount);
         gateLevel = findViewById(R.id.gate_level);
-        openGate = findViewById(R.id.openGate);
-        closeGate = findViewById(R.id.closeGate);
+        getWater = findViewById(R.id.getWater);
+        removeWater = findViewById(R.id.removeWater);
         autoButton = findViewById(R.id.autoButton);
-        heightTab = findViewById(R.id.height_tab);
+        startSwitch = findViewById(R.id.startSwitch);
+        autoSwitch = findViewById(R.id.autoSwitch);
+        bottomPage = findViewById(R.id.bottom_page);
+        insideTabText = findViewById(R.id.inside_tab_text);
+        heightTabText = findViewById(R.id.height_tab_text);
+        height2TabText = findViewById(R.id.height2_tab_text);
+        autoSwitchTab = findViewById(R.id.autoSwitchTab);
+        heightAutoTabText = findViewById(R.id.height_auto_tab_text);
         buttonTab = findViewById(R.id.button_tab);
+        gateButtons = findViewById(R.id.gateButtons);
         heightValue = findViewById(R.id.height_value);
+        height2Value = findViewById(R.id.height2_value);
+        heightAutoValue = findViewById(R.id.height_auto_value);
         insideMaxValue = findViewById(R.id.inside_max_value);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.values, R.layout.spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        insideMaxValue.setAdapter(adapter);
+        heightValue.setAdapter(adapter);
+        height2Value.setAdapter(adapter);
+        heightAutoValue.setAdapter(adapter);
+
         buttonPage = findViewById(R.id.button_page);
     }
 
@@ -157,7 +182,7 @@ public class ButtonActivity extends AppCompatActivity {
         Runnable expirationRunnable = new Runnable() {
             @Override
             public void run() {
-                showToast("Kết nối với " + ssid + " thất bại.\nError: Time Out");
+                showToast("Kết nối với " + ssid + " thất bại.\nError: Time Out", 5000);
                 connectivityManager.unregisterNetworkCallback(networkCallbackHolder[0]);
                 new Handler(Looper.getMainLooper()).postDelayed(() -> {
                     onBackPressed();
@@ -168,14 +193,14 @@ public class ButtonActivity extends AppCompatActivity {
         ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback() {
             @Override
             public void onAvailable(@NonNull Network network) {
-                showToast("Đã kết nối với " + ssid);
+                showToast("Đã kết nối với " + ssid, 5000);
                 connectivityManager.bindProcessToNetwork(network);
                 expirationHandler.removeCallbacks(expirationRunnable);
             }
 
             @Override
             public void onUnavailable() {
-                showToast("Kết nối với " + ssid + " thất bại.\nError: Network Unavailable");
+                showToast("Kết nối với " + ssid + " thất bại.\nError: Network Unavailable", 5000);
                 expirationHandler.removeCallbacks(expirationRunnable);
                 new Handler(Looper.getMainLooper()).postDelayed(() -> {
                     onBackPressed();
@@ -184,7 +209,7 @@ public class ButtonActivity extends AppCompatActivity {
 
             @Override
             public void onLost(@NonNull Network network) {
-                showToast("Kết nối với " + ssid + " thất bại.\nError: Connection Lost");
+                showToast("Kết nối với " + ssid + " thất bại.\nError: Connection Lost", 5000);
                 connectivityManager.bindProcessToNetwork(null);
                 connectToWifi(ssid);
             }
@@ -201,52 +226,93 @@ public class ButtonActivity extends AppCompatActivity {
     @SuppressLint("ClickableViewAccessibility")
     private void buttonSetup() {
         autoButton.setOnToggledListener((toggleableView, isOn) -> {
-            state = isOn ? PHONEMANUAL : AUTO;
-            showToast(isOn? "Chế độ Thủ công" : "Chế độ Tự động");
+            if (isOn){
+                state = (startSwitch.isOn())? "PHONE_MANUAL" : "PHONE_END";
+            }
+            else state = "AUTO";
+            showToast(isOn? "Chế độ Thủ công" : "Chế độ Tự động", 5000);
             //Send to esp///
             postOKHTTP(state);
             ///Show/Hide buttons
             controlButton(state);
         });
 
-        openGate.setOnButtonClickListener(new TapHoldUpButton.OnButtonClickListener() {
-            @Override
-            public void onLongHoldStart(View v) {
-                showToast("Cổng đang mở");
-                handleGateAction(OPENING);
-            }
-
-            @Override
-            public void onLongHoldEnd(View v) {
-                showToast("Đã ngưng hoạt động");
-                handleGateAction(STOPPED);
-            }
-
-            @Override
-            public void onClick(View v) {showToast("Vui lòng ấn giữ");}
+        startSwitch.setOnToggledListener((toggleableView, isOn) -> {
+            state = isOn ? "PHONE_MANUAL" : "PHONE_END";
+            showToast(isOn? "Chế độ Start" : "Chế độ End", 5000);
+            //Send to esp///
+            postOKHTTP(state);
+            ///Show/Hide buttons
+            controlButton(state);
         });
 
-        closeGate.setOnButtonClickListener(new TapHoldUpButton.OnButtonClickListener() {
+        autoSwitch.setOnToggledListener((toggleableView, isOn) -> {
+            autoState = isOn ? "ON" : "OFF";
+            showToast(isOn? "Bật Chế độ Tự động" : "Tắt Chế độ Tự động", 5000);
+            //Send to esp///
+            postOKHTTP(autoState);
+            ///Show/Hide buttons
+            controlButton(state);
+        });
+
+        getWater.setOnButtonClickListener(new TapHoldUpButton.OnButtonClickListener() {
             @Override
             public void onLongHoldStart(View v) {
-                showToast("Cổng đang đóng");
-                handleGateAction(CLOSING);
+//                showToast("Cổng đang mở", 5000);
+//                handleGateAction("OPENING");
             }
 
             @Override
             public void onLongHoldEnd(View v) {
-                showToast("Đã ngưng hoạt động");
-                handleGateAction(STOPPED);
+//                showToast("Đã ngưng hoạt động", 5000);
+//                handleGateAction("STOPPED");
             }
 
             @Override
-            public void onClick(View v) {showToast("Vui lòng ấn giữ");}
+            public void onClick(View v) {
+                handleGateAction("GET_WATER");
+            }
+        });
+
+        removeWater.setOnButtonClickListener(new TapHoldUpButton.OnButtonClickListener() {
+            @Override
+            public void onLongHoldStart(View v) {
+//                showToast("Cổng đang đóng", 5000);
+//                handleGateAction("CLOSING");
+            }
+
+            @Override
+            public void onLongHoldEnd(View v) {
+//                showToast("Đã ngưng hoạt động", 5000);
+//                handleGateAction("STOPPED");
+            }
+
+            @Override
+            public void onClick(View v) {
+                handleGateAction("REMOVE_WATER");
+            }
         });
         heightValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 isHeightFocused = hasFocus;
                 heightValue.setBackgroundResource(R.drawable.edit_focused);
+            }
+        });
+
+        heightAutoValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                isHeightAutoFocused = hasFocus;
+                heightAutoValue.setBackgroundResource(R.drawable.edit_focused);
+            }
+        });
+
+        height2Value.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                isHeight2Focused = hasFocus;
+                height2Value.setBackgroundResource(R.drawable.edit_focused);
             }
         });
 
@@ -264,8 +330,18 @@ public class ButtonActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (isHeightFocused) {
                     heightValue.clearFocus();
+                    heightValue.setBackgroundResource(R.drawable.edit_unfocused);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+                else if (isHeight2Focused) {
+                    height2Value.clearFocus();
+                    height2Value.setBackgroundResource(R.drawable.edit_unfocused);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+                if (isInMaxFocused) {
                     insideMaxValue.clearFocus();
-                    heightValue.setBackgroundResource(R.drawable.edit_unfocused);
                     insideMaxValue.setBackgroundResource(R.drawable.edit_unfocused);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     if (imm != null) imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -274,78 +350,68 @@ public class ButtonActivity extends AppCompatActivity {
             }
         });
 
-        insideMaxValue.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        insideMaxValue.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                String originalInMaxValue = insideMaxValue.getText().toString();
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (imm != null) imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    v.clearFocus();
-                    insideMaxValue.setBackgroundResource(R.drawable.edit_unfocused);
-                    isInMaxFocused = false;
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String payload = String.valueOf(position);
+                postOKHTTP(String.valueOf(Integer.parseInt(payload)+30));
+            }
 
-                    String input = insideMaxValue.getText().toString();
-                    int value = input.isEmpty() ? 0 : Integer.parseInt(input);
-
-                    if (value < 0 || value > 7) {
-                        // Revert to the original value
-                        insideMaxValue.setText(originalInMaxValue);
-                        showToast("Giá trị không hợp lệ. Vui lòng nhập giá trị từ 0 đến 7.");
-                    } else {
-                        // Update the original value to the new valid value
-                        originalInMaxValue = String.valueOf(value);
-                        insideMaxValue.setText(originalInMaxValue);
-//                        showToast("Đã đổi giá trị Mực cao nhất: " + originalInMaxValue);
-                        postOKHTTP(value + 10);
-                    }
-                    return true;
-                }
-                return false;
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Handle the case where nothing is selected if needed
             }
         });
 
-
-        heightValue.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        heightValue.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                String originalHeightValue = heightValue.getText().toString();
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (imm != null) imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    v.clearFocus();
-                    heightValue.setBackgroundResource(R.drawable.edit_unfocused);
-                    isHeightFocused = false;
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String payload = String.valueOf(position);
+                postOKHTTP(payload);
+            }
 
-                    String input = heightValue.getText().toString();
-                    int value = input.isEmpty() ? 0 : Integer.parseInt(input);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Handle the case where nothing is selected if needed
+            }
+        });
 
-                    if (value < 0 || value > 7) {
-                        heightValue.setText(originalHeightValue);
-                        showToast("Giá trị không hợp lệ. Vui lòng nhập giá trị từ 0 đến 7.");
-                    } else {
-                        originalHeightValue = String.valueOf(value);
-                        heightValue.setText(originalHeightValue);
-//                        showToast("Đã đổi giá trị Mực chênh lệch: " + delta);
-                        postOKHTTP(value);
-                    }
-                    return true;
-                }
-                return false;
+        heightAutoValue.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String payload = String.valueOf(position);
+                postOKHTTP(String.valueOf(Integer.parseInt(payload)+20));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Handle the case where nothing is selected if needed
+            }
+        });
+
+        height2Value.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String payload = String.valueOf(position);
+                postOKHTTP(String.valueOf(Integer.parseInt(payload)+10));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Handle the case where nothing is selected if needed
             }
         });
     }
 
-    private void handleGateAction(int status) {
+    private void handleGateAction(String status) {
         //Send to ESP///
         postOKHTTP(status);
-        statusText.setText(status == OPENING ? "Đang mở" : status == CLOSING ? "Đang đóng" : "Không hoạt động");
-        boolean isStopped = status == STOPPED;
+//        statusText.setText(Objects.equals(status, "OPENING") ? "Đang mở" : Objects.equals(status, "CLOSING") ? "Đang đóng" : "Không hoạt động");
 
         //DISABLE/ENABLE concurrent button action
-        openGate.enableLongHold(isStopped);
-        closeGate.enableLongHold(isStopped);
-        autoButton.setEnabled(isStopped);
+//        getWater.enableLongHold(isStopped);
+//        removeWater.enableLongHold(isStopped);
+//        autoButton.setEnabled(isStopped);
     }
 
     //THREAD FOR REQUEST WATER INFO
@@ -362,11 +428,10 @@ public class ButtonActivity extends AppCompatActivity {
     }
 
     //POST TO ESP
-    public void postOKHTTP(int status) {
-        String payload = (status == CLOSING)? "CLOSING" : (status == OPENING)? "OPENING" : (status == STOPPED)? "STOPPED" : (status == AUTO)? "AUTO" : (status == PHONEMANUAL)? "PHONEMANUAL" : String.valueOf(status);
+    public void postOKHTTP(String status) {
         String ip = "192.168.1." + String.valueOf((buttonNumber - 1) * 8 + 1);
         String url = "http://" + ip + "/post";
-        RequestBody body = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded"), "body=" + payload);
+        RequestBody body = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded"), "body=" + status);
         Request request = new Request.Builder().url(url).post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -391,7 +456,7 @@ public class ButtonActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 100 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
-            showToast("Permission denied by the user");
+            showToast("Permission denied by the user", 5000);
         }
     }
 
@@ -416,7 +481,9 @@ public class ButtonActivity extends AppCompatActivity {
         });
     }
 
-    int tempDelta = 0;
+    int tempH1 = 0;
+    int tempH1Auto = 0;
+    int tempH2 = 0;
     int tempInMax = 0;
 
     //GET WATER INFO FROM ESP
@@ -425,67 +492,90 @@ public class ButtonActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(jsonResponse);
             int inLevel = jsonObject.getInt("inLevel");
             int outLevel = jsonObject.getInt("outLevel");
-            int gateLevel = jsonObject.getInt("gateLevel");
-            int gateMode = jsonObject.getInt("gateMode");
-            int gateStatus = jsonObject.getInt("gateStatus");
-            int delta = jsonObject.getInt("delta");
-            if (delta != tempDelta){
-                showToast("Gửi thành công giá trị Mực chênh lệch: " + delta);
-                tempDelta = delta;
+            int top_val = jsonObject.getInt("top_val");
+            int bot_val = jsonObject.getInt("bot_val");
+
+            String gateMode = jsonObject.getString("gateMode");
+            String gateStatus = jsonObject.getString("gateStatus");
+            String errorCode = jsonObject.getString("errorCode");
+            String autoMode = jsonObject.getString("autoMode");
+
+            ///h1///
+            int h1 = jsonObject.getInt("h1");
+            if (h1 != tempH1){
+                showToast("Gửi thành công giá trị Mực chênh lệch: " + h1, 5000);
+                tempH1 = h1;
             }
+            ///h2///
+            int h2 = jsonObject.getInt("h2");
+            if (h2 != tempH2){
+                showToast("Gửi thành công giá trị Mực chênh lệch: " + h2, 5000);
+                tempH2 = h2;
+            }
+            ///h1_auto///
+            int h1_auto = jsonObject.getInt("h1_auto");
+            if (h1_auto != tempH1Auto){
+                showToast("Gửi thành công giá trị Mực chênh lệch: " + h1, 5000);
+                tempH1Auto = h1_auto;
+            }
+            ///inMax///
             int inMax = jsonObject.getInt("inMax");
             if (inMax != tempInMax){
-                showToast("Gửi thành công giá trị Mực cao nhất: " + inMax);
+                showToast("Gửi thành công giá trị Mực cao nhất: " + inMax, 5000);
                 tempInMax = inMax;
             }
 
-
             Log.d("JSON", "in: " + String.valueOf(inLevel));
             Log.d("JSON","out: " + String.valueOf(outLevel));
-            Log.d("JSON","gatelevel: " + String.valueOf(gateLevel));
-            Log.d("JSON","gatemode: " + getStatus(gateMode));
-            Log.d("JSON","gatestatus: " + getStatus(gateStatus));
-            Log.d("JSON", "delta: " + String.valueOf(delta));
+            Log.d("JSON","gatemode: " + gateMode);
+            Log.d("JSON","gatestatus: " + gateStatus);
             Log.d("JSON", "inMax: " + String.valueOf(inMax));
 
-            updateWaterLevel(inLevel, outLevel, gateLevel, gateMode, gateStatus, delta, inMax);
+            updateWaterLevel(inLevel, outLevel, top_val, bot_val, h1, h2, h1_auto, inMax, gateMode, autoMode, gateStatus, errorCode);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    //THREAD FUNCTION TO UPDATE WATER AND GATE STATUS
-    void updateWaterLevel(int in, int out, int gate, int mode, int status, int delta, int inMax) {
-        insideLevel.getLayoutParams().height = getWaterPX(in);
-        outsideLevel.getLayoutParams().height = getWaterPX(out);
-        gateLevel.getLayoutParams().height = getGatePX(gate);
-        state = mode;
+    int prevTopVal = -1;
+    int prevBotVal = -1;
+    String prevErrorCode = "";
 
-        statusText.setText(status == OPENING ? "Đang mở" : status == CLOSING ? "Đang đóng" : "Không hoạt động");
-        if (gate == 1) showToast("Cổng lên cao nhất");
-        else if (gate == 0) showToast("Cổng xuống thấp nhất");
-        if (mode == MANUAL) autoButton.setEnabled(false);
-        else{
-            autoButton.setEnabled(true);
-        autoButton.setOn(mode == PHONEMANUAL);
-        controlButton(mode);}
+    //THREAD FUNCTION TO UPDATE WATER AND GATE STATUS
+    void updateWaterLevel(int in, int out, int top_val, int bot_val, int h1, int h2, int h1_auto, int inMax, String mode, String autoMode, String status, String errorCode) {
+            insideLevel.getLayoutParams().height = getWaterPX(in);
+            outsideLevel.getLayoutParams().height = getWaterPX(out);
+
+        gateLevel.getLayoutParams().height = getGatePX(top_val, bot_val);
+        state = mode;
+        autoState = autoMode;
+
+        if (Objects.equals(errorCode, "H1") && !Objects.equals(errorCode, prevErrorCode)) showToast("Điều kiện lấy nước không thoả mãn", 5000);
+        else if (Objects.equals(errorCode, "H2") && !Objects.equals(errorCode, prevErrorCode)) showToast("Điều kiện tháo nước không thoả mãn", 5000);
+
+        if (Objects.equals(status, "OPENING")) statusText.setText("Đang mở");
+        else if (Objects.equals(status, "CLOSING") || Objects.equals(status, "FORCE_CLOSE")) statusText.setText("Đang đóng");
+        else if (Objects.equals(status, "GET_WATER")) statusText.setText("Đang lấy nước");
+        else if (Objects.equals(status, "REMOVE_WATER")) statusText.setText("Đang tháo nước");
+        else if (Objects.equals(status, "STOPPED")) statusText.setText("Không hoạt động");
+
+        if (top_val == 1 && prevTopVal != top_val) showToast("Cổng lên cao nhất", 5000);
+        else if (bot_val == 1 && prevBotVal != bot_val) showToast("Cổng xuống thấp nhất", 5000);
+        prevTopVal = top_val;
+        prevBotVal = bot_val;
+        prevErrorCode = errorCode;
+
+        controlButton(mode);
 
         insideLevel.requestLayout();
         outsideLevel.requestLayout();
         gateLevel.requestLayout();
-        if (!isHeightFocused) heightValue.setText(String.valueOf(delta));
-        if (!isInMaxFocused) insideMaxValue.setText(String.valueOf(inMax));
+        if (!isHeightFocused) heightValue.setSelection(h1);
+        if (!isHeight2Focused) height2Value.setSelection(h2);
+        if (!isInMaxFocused) insideMaxValue.setSelection(inMax);
+        if (!isHeightAutoFocused) heightAutoValue.setSelection(h1_auto);
     }
 
-    String getStatus(int status){
-        if (status == -100) return "AUTO";
-        else if (status == -101) return "MANUAL";
-        else if (status == -102) return "PHONEMANUAL";
-        else if (status == -110) return "OPENING";
-        else if (status == -111) return "CLOSING";
-        else if (status == -112) return "STOPPED";
-        return "";
-    }
 
     private int getWaterPX(int level){
         Log.d("JSON", "level: " + String.valueOf(level));
@@ -493,22 +583,53 @@ public class ButtonActivity extends AppCompatActivity {
         return (int) (((level + 1) * 35) * scale + 0.5f - 18);
     }
 
-    private int getGatePX(int level){
+    private int getGatePX(int top_val, int bot_val){
         final float scale = getResources().getDisplayMetrics().density;
-        if (level == -1) return (int) (140 * scale + 0.5f);
-        else return (int) ((1-level) * 280 * scale + 0.5f);
+        int height = (top_val == 1)? 0 : (bot_val == 1)? 280 : 140;
+        return (int) (height * scale + 0.5f);
     }
 
-    private void showToast(String message) {
+    private void showToast(String message, int duration) {
         if (currentToast != null) currentToast.cancel();
+
+        final int delay = Toast.LENGTH_SHORT;
+        final int iterations = duration / 3500;
+
         currentToast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
-        currentToast.show();
+
+        final Handler handler = new Handler();
+        for (int i = 0; i < iterations; i++) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    currentToast.show();
+                }
+            }, i * delay);
+        }
     }
 
     //SHOW BUTTON FOR AUTO AND MANUAL MODE
-    private void controlButton(int state) {
-        buttonTab.setVisibility((state == PHONEMANUAL)? View.VISIBLE : View.INVISIBLE);
-        heightTab.setVisibility((state == AUTO)? View.VISIBLE : View.INVISIBLE);
+    private void controlButton(String state) {
+        boolean isAuto = Objects.equals(state, "AUTO");
+        boolean isEnd = Objects.equals(state, "END");
+
+        autoButton.setEnabled(!isEnd);
+        autoButton.setOn(!isAuto);
+        startSwitch.setOn(!Objects.equals(state, "PHONE_END"));
+        autoSwitch.setOn(Objects.equals(autoState, "ON"));
+
+        bottomPage.setVisibility((isEnd)? View.INVISIBLE : View.VISIBLE);
+
+        height2TabText.setVisibility((!isAuto) ? View.VISIBLE : View.INVISIBLE);
+        heightTabText.setVisibility((!isAuto) ? View.VISIBLE : View.INVISIBLE);
+
+        buttonTab.setVisibility((!isAuto) ? View.VISIBLE : View.INVISIBLE);
+
+        insideTabText.setVisibility((isAuto)? View.VISIBLE : View.INVISIBLE);
+        heightAutoTabText.setVisibility((isAuto) ? View.VISIBLE : View.INVISIBLE);
+        autoSwitchTab.setVisibility((isAuto) ? View.VISIBLE : View.INVISIBLE);
+
+        gateButtons.setVisibility((!Objects.equals(state, "PHONE_END"))? View.VISIBLE : View.INVISIBLE);
     }
 }
 
