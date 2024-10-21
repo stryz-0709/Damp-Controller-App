@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/White"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -27,42 +28,40 @@
             android:background="@android:color/transparent"
             app:popupTheme="@style/Theme.DapSonTien.PopupOverlay" />
 
-        <!--Show day-->
-        <LinearLayout
-            android:id="@+id/layout_today"
+        <RelativeLayout
+            android:id="@+id/title"
             android:layout_below="@id/toolbar"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
 
-            <!--DotW-->
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/logo"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/logo"/>
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/current_day"
-                android:textSize="30sp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Monday"
+                android:layout_below="@id/logo"
+                android:textSize="24sp"
+                android:layout_marginTop="8dp"
+                android:layout_centerHorizontal="true"
+                android:text="Hệ thống Quản lý đập Sơn Tiên"
                 android:textStyle="bold"
                 android:textColor="@color/Ocean_Blue"/>
 
-            <!--Date-->
-            <TextView
-                android:id="@+id/current_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="20 Apr"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/Iceberg"/>
-        </LinearLayout>
+        </RelativeLayout>
 
         <ScrollView
-            android:layout_below="@id/layout_today"
+            android:layout_below="@id/title"
             android:layout_width="match_parent"
-            android:background="?android:attr/windowBackground"
+            android:layout_marginTop="10dp"
+            android:background="@color/White"
             android:layout_height="match_parent">
 
             <RelativeLayout
@@ -76,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:text="Cổng 1"
                     android:padding="15dp" />
 
@@ -85,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate1"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 2"
                     android:padding="15dp" />
@@ -95,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate2"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 3"
                     android:padding="15dp" />
@@ -106,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_below="@id/gate1"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:text="Cổng 4"
                     android:padding="15dp" />
 
@@ -116,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate4"
                     android:layout_below="@id/gate2"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 5"
                     android:padding="15dp" />
@@ -127,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate5"
                     android:layout_below="@id/gate3"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 6"
                     android:padding="15dp" />
@@ -138,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_below="@id/gate4"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:text="Cổng 7"
                     android:padding="15dp" />
 
@@ -148,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate7"
                     android:layout_below="@id/gate5"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 8"
                     android:padding="15dp" />
@@ -159,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate8"
                     android:layout_below="@id/gate6"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 9"
                     android:padding="15dp" />
@@ -170,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_below="@id/gate7"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:text="Cổng 10"
                     android:padding="15dp" />
 
@@ -180,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate10"
                     android:layout_below="@id/gate8"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 11"
                     android:padding="15dp" />
@@ -191,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate11"
                     android:layout_below="@id/gate9"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 12"
                     android:padding="15dp" />
@@ -201,7 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/gate10"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 13"
                     android:padding="15dp" />
@@ -212,7 +211,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate13"
                     android:layout_below="@id/gate11"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 14"
                     android:padding="15dp" />
@@ -223,7 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate14"
                     android:layout_below="@id/gate12"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 15"
                     android:padding="15dp" />
@@ -233,7 +232,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/gate13"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 16"
                     android:padding="15dp" />
@@ -244,7 +243,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate16"
                     android:layout_below="@id/gate14"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 17"
                     android:padding="15dp" />
@@ -255,7 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate17"
                     android:layout_below="@id/gate15"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 18"
                     android:padding="15dp" />
@@ -266,7 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_below="@id/gate16"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:text="Cổng 19"
                     android:padding="15dp" />
 
@@ -276,131 +275,22 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/gate19"
                     android:layout_below="@id/gate17"
-                    android:backgroundTint="@color/Ocean_Blue"
+                    android:backgroundTint="@color/Ferrari_Red"
                     android:layout_margin="8dp"
                     android:text="Cổng 20"
                     android:padding="15dp" />
 
-                <Button
-                    android:id="@+id/gate21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/gate20"
-                    android:layout_below="@id/gate18"
-                    android:backgroundTint="@color/Ocean_Blue"
-                    android:layout_margin="8dp"
-                    android:text="Cổng 21"
-                    android:padding="15dp" />
 
-                <Button
-                    android:id="@+id/gate22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_below="@id/gate19"
-                    android:backgroundTint="@color/Ocean_Blue"
-                    android:text="Cổng 22"
-                    android:padding="15dp" />
-
-                <Button
-                    android:id="@+id/gate23"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/gate22"
-                    android:layout_below="@id/gate20"
-                    android:backgroundTint="@color/Ocean_Blue"
-                    android:layout_margin="8dp"
-                    android:text="Cổng 23"
-                    android:padding="15dp" />
-
-                <Button
-                    android:id="@+id/gate24"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/gate23"
-                    android:layout_below="@id/gate21"
-                    android:backgroundTint="@color/Ocean_Blue"
-                    android:layout_margin="8dp"
-                    android:text="Cổng 24"
-                    android:padding="15dp" />
-
-                <Button
-                    android:id="@+id/gate25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_below="@id/gate24"
-                    android:backgroundTint="@color/Ocean_Blue"
-                    android:text="Cổng 25"
-                    android:padding="15dp" />
-
-                <Button
-                    android:id="@+id/gate26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/gate25"
-                    android:layout_below="@id/gate23"
-                    android:backgroundTint="@color/Ocean_Blue"
-                    android:layout_margin="8dp"
-                    android:text="Cổng 26"
-                    android:padding="15dp" />
-
-                <Button
-                    android:id="@+id/gate27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/gate26"
-                    android:layout_below="@id/gate24"
-                    android:backgroundTint="@color/Ocean_Blue"
-                    android:layout_margin="8dp"
-                    android:text="Cổng 27"
-                    android:padding="15dp" />
-
-                <Button
-                    android:id="@+id/gate28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_below="@id/gate25"
-                    android:backgroundTint="@color/Ocean_Blue"
-                    android:text="Cổng 28"
-                    android:padding="15dp" />
-
-                <Button
-                    android:id="@+id/gate29"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/gate28"
-                    android:layout_below="@id/gate26"
-                    android:backgroundTint="@color/Ocean_Blue"
-                    android:layout_margin="8dp"
-                    android:text="Cổng 29"
-                    android:padding="15dp" />
-
-                <Button
-                    android:id="@+id/gate30"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/gate29"
-                    android:layout_below="@id/gate27"
-                    android:layout_margin="8dp"
-                    android:backgroundTint="@color/Ocean_Blue"
-                    android:text="Cổng 30"
-                    android:padding="15dp" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/blankCard"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_below="@id/gate30"
-                    android:backgroundTint="@android:color/transparent"
-                    app:cardCornerRadius="0dp"
-                    app:cardElevation="0dp" />
             </RelativeLayout>
 
 
         </ScrollView>
 
     </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

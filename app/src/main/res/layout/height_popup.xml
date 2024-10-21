@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="35dp"
+    android:id="@+id/popupDialog"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dialogBox"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/white_box">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/popup">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginVertical="10dp"
+                android:id="@+id/logo"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/logo"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/popup_title"
+                android:text="Điều chỉnh mực chênh lệch"
+                android:layout_below="@id/logo"
+                android:layout_marginHorizontal="4dp"
+                android:layout_centerHorizontal="true"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/popup"
+            android:layout_marginTop="20dp"
+            android:id="@+id/height_tab_text"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/height_text"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_centerVertical="true"
+                android:text="Mực chênh lệch H1"
+                android:textStyle="bold"
+                android:textColor="@color/Gray"/>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:id="@+id/height_button"
+                android:layout_gravity="center_horizontal"
+                android:layout_toEndOf="@id/height_text"
+                android:background="@drawable/insert_field">
+
+                <Spinner
+                    android:id="@+id/height_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/insert_field"
+                    android:paddingStart="0dp"
+                    android:layout_centerVertical="true"
+                    android:textSize="16sp"
+                    android:textColor="@color/Black"
+                    android:spinnerMode="dropdown" />
+
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/baseline_height_24" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/height2_tab_text"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/height_tab_text"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/height2_text"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_centerVertical="true"
+                android:text="Mực chênh lệch H2"
+                android:textStyle="bold"
+                android:textColor="@color/Gray"/>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:id="@+id/height2_button"
+                android:layout_below="@id/height2_button"
+                android:layout_gravity="center_horizontal"
+                android:layout_toEndOf="@id/height2_text"
+                android:background="@drawable/insert_field">
+
+                <Spinner
+                    android:id="@+id/height2_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/insert_field"
+                    android:paddingStart="0dp"
+                    android:layout_centerVertical="true"
+                    android:textSize="16sp"
+                    android:textColor="@color/Black"
+                    android:spinnerMode="dropdown" />
+
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/baseline_height_24" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/centerShim"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/height2_tab_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/error_desc"
+            android:text="Vui lòng nhập mực chênh lệch"
+            android:textColor="@color/Ferrari_Red"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/height2_tab_text"
+            android:textSize="16sp" />
+
+
+        <Button
+            android:id="@+id/popup_button1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/White"
+            android:text="HUỶ"
+            android:textColor="@color/Ferrari_Red"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            android:layout_below="@id/error_desc"
+            android:layout_toLeftOf="@id/centerShim"
+            tools:ignore="MissingConstraints"/>
+
+        <Button
+            android:id="@+id/popup_button2"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/White"
+            android:text="NHẬP"
+            android:textColor="@color/Ocean_Blue"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            android:layout_below="@id/error_desc"
+            android:layout_toRightOf="@id/centerShim"
+            tools:ignore="MissingConstraints"/>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
