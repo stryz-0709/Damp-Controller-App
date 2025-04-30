@@ -58,10 +58,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/height_text"
                 android:layout_marginTop="20dp"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_centerVertical="true"
-                android:text="Mực chênh lệch H1"
+                android:text="Mực chênh lệch Lấy nước"
                 android:textStyle="bold"
                 android:textColor="@color/Gray"/>
 
@@ -108,17 +108,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/height2_text"
                 android:layout_marginTop="20dp"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_centerVertical="true"
-                android:text="Mực chênh lệch H2"
+                android:text="Mực chênh lệch Tháo nước"
                 android:textStyle="bold"
                 android:textColor="@color/Gray"/>
 
             <RelativeLayout
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="12dp"
                 android:id="@+id/height2_button"
                 android:layout_below="@id/height2_button"
                 android:layout_gravity="center_horizontal"

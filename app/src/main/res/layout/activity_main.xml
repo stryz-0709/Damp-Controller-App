@@ -15,11 +15,11 @@
         <com.scwang.wave.MultiWaveHeader
             android:id="@+id/waveHeader"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_alignParentTop="true"
             app:mwhCloseColor="@color/Iceberg"
             app:mwhStartColor="@color/Ocean_Blue"
-            app:mwhWaveHeight="60dp" />
+            app:mwhWaveHeight="@dimen/_40sdp" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -31,14 +31,14 @@
         <RelativeLayout
             android:id="@+id/title"
             android:layout_below="@id/toolbar"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:id="@+id/logo"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/logo"/>
@@ -48,8 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/logo"
-                android:textSize="24sp"
-                android:layout_marginTop="8dp"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_centerHorizontal="true"
                 android:text="Hệ thống Quản lý đập Sơn Tiên"
                 android:textStyle="bold"
@@ -60,7 +60,7 @@
         <ScrollView
             android:layout_below="@id/title"
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:background="@color/White"
             android:layout_height="match_parent">
 
@@ -72,213 +72,253 @@
 
                 <Button
                     android:id="@+id/gate1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:text="Cổng 1"
-                    android:padding="15dp" />
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:text="Cổng 1"/>
 
                 <Button
                     android:id="@+id/gate2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:backgroundTint="@color/Ferrari_Red"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
                     android:layout_toEndOf="@id/gate1"
-                    android:backgroundTint="@color/Red"
-                    android:layout_margin="8dp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 2"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_toEndOf="@id/gate2"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 3"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:layout_below="@id/gate1"
                     android:backgroundTint="@color/Ferrari_Red"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
                     android:text="Cổng 4"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_toEndOf="@id/gate4"
                     android:layout_below="@id/gate2"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 5"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_toEndOf="@id/gate5"
                     android:layout_below="@id/gate3"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 6"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:layout_below="@id/gate4"
                     android:backgroundTint="@color/Ferrari_Red"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
                     android:text="Cổng 7"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
                     android:layout_toEndOf="@id/gate7"
                     android:layout_below="@id/gate5"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 8"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
                     android:layout_toEndOf="@id/gate8"
                     android:layout_below="@id/gate6"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 9"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:layout_below="@id/gate7"
                     android:backgroundTint="@color/Ferrari_Red"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
                     android:text="Cổng 10"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
                     android:layout_toEndOf="@id/gate10"
                     android:layout_below="@id/gate8"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 11"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
                     android:layout_toEndOf="@id/gate11"
                     android:layout_below="@id/gate9"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 12"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
                     android:layout_below="@id/gate10"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 13"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
                     android:layout_toEndOf="@id/gate13"
                     android:layout_below="@id/gate11"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 14"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
                     android:layout_toEndOf="@id/gate14"
                     android:layout_below="@id/gate12"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 15"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
                     android:layout_below="@id/gate13"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 16"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
                     android:layout_toEndOf="@id/gate16"
                     android:layout_below="@id/gate14"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 17"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
                     android:layout_toEndOf="@id/gate17"
                     android:layout_below="@id/gate15"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 18"
-                    android:padding="15dp" />
+                     />
 
                 <Button
                     android:id="@+id/gate19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:layout_below="@id/gate16"
                     android:backgroundTint="@color/Ferrari_Red"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
                     android:text="Cổng 19"
-                    android:padding="15dp" />
+                    
+                     />
 
                 <Button
                     android:id="@+id/gate20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_70sdp"
+                     android:layout_height="@dimen/_40sdp"
                     android:layout_toEndOf="@id/gate19"
                     android:layout_below="@id/gate17"
                     android:backgroundTint="@color/Ferrari_Red"
-                    android:layout_margin="8dp"
+                    android:padding="0sp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:text="Cổng 20"
-                    android:padding="15dp" />
+                     />
 
 
             </RelativeLayout>

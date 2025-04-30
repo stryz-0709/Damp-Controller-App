@@ -110,14 +110,20 @@ public class ButtonFragment extends Fragment {
         getWater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleGateAction("GET_WATER");
+                getWater.setBackground(ContextCompat.getDrawable(
+                        requireContext(),
+                         R.drawable.button_enabled));
+                handleGateAction("LAY_NUOC");
             }
         });
 
         removeWater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleGateAction("REMOVE_WATER");
+                removeWater.setBackground(ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.button_enabled));
+                handleGateAction("THAO_NUOC");
             }
         });
 
@@ -165,7 +171,7 @@ public class ButtonFragment extends Fragment {
         wifiRunnable = new Runnable() {
             @Override
             public void run() {
-                if (!mainActivity.checkWifi("Cổng " + mainActivity.selectedGate) ||
+                if (!Objects.equals(mainActivity.getWifi(), "Cổng " + mainActivity.selectedGate) ||
                         mainActivity.h1 < 0 || mainActivity.h2 < 0){
                     if (getParentFragmentManager().getBackStackEntryCount() > 0) {
                         getParentFragmentManager().popBackStack();  // Pop the current fragment
@@ -194,11 +200,12 @@ public class ButtonFragment extends Fragment {
 
         gateLevel.getLayoutParams().height = getGatePX(top_val, bot_val);
 
-        if (Objects.equals(status, "OPENING")) statusText.setText("Đang mở");
-        else if (Objects.equals(status, "CLOSING") || Objects.equals(status, "FORCE_CLOSE")) statusText.setText("Đang đóng");
-        else if (Objects.equals(status, "GET_WATER")) statusText.setText("Đang lấy nước");
-        else if (Objects.equals(status, "REMOVE_WATER")) statusText.setText("Đang tháo nước");
-        else if (Objects.equals(status, "STOPPED")) statusText.setText("Không hoạt động");
+        if (Objects.equals(status, "DONG_CONG")) statusText.setText("Đang đóng cổng");
+        else if (Objects.equals(status, "LAY_NUOC")) statusText.setText("Đang lấy nước");
+        else if (Objects.equals(status, "THAO_NUOC")) statusText.setText("Đang tháo nước");
+        else if (Objects.equals(status, "SWITCH_TREN")) statusText.setText("Đang chạm switch trên");
+        else if (Objects.equals(status, "SWITCH_DUOI")) statusText.setText("Đang chạm switch dưới");
+        else if (Objects.equals(status, "STANDBY")) statusText.setText("Không hoạt động");
 
         if (top_val == 1 && prevTopVal != top_val) mainActivity.showToast("Cổng lên cao nhất", 5000);
         else if (bot_val == 1 && prevBotVal != bot_val) mainActivity.showToast("Cổng xuống thấp nhất", 5000);
@@ -215,12 +222,12 @@ public class ButtonFragment extends Fragment {
 
         getWater.setBackground(ContextCompat.getDrawable(
                 requireContext(),
-                Objects.equals(mainActivity.gateStatus, "GET_WATER") ? R.drawable.button_enabled : R.drawable.button
+                Objects.equals(mainActivity.gateStatus, "LAY_NUOC") ? R.drawable.button_enabled : R.drawable.button
         ));
 
         removeWater.setBackground(ContextCompat.getDrawable(
                 requireContext(),
-                Objects.equals(mainActivity.gateStatus, "REMOVE_WATER") ? R.drawable.button_enabled : R.drawable.button
+                Objects.equals(mainActivity.gateStatus, "THAO_NUOC") ? R.drawable.button_enabled : R.drawable.button
         ));
 
         insideLevel.requestLayout();
@@ -228,16 +235,23 @@ public class ButtonFragment extends Fragment {
         gateLevel.requestLayout();
     }
 
-    private int getWaterPX(int level){
-        Log.d("JSON", "level: " + String.valueOf(level));
-        final float scale = getResources().getDisplayMetrics().density;
-        return (int) (((level + 1) * 31) * scale + 0.5f - 15);
+    private int getWaterPX(int level) {
+        Log.d("JSON", "level: " + level);
+        float baseHeight = getResources().getDimension(com.intuit.sdp.R.dimen._20sdp);
+        float offset = getResources().getDimension(com.intuit.sdp.R.dimen._10sdp);
+        return (int) ((level + 1) * baseHeight - offset);
     }
 
-    private int getGatePX(int top_val, int bot_val){
-        final float scale = getResources().getDisplayMetrics().density;
-        int height = (top_val == 1)? 0 : (bot_val == 1)? 248 : 124;
-        return (int) (height * scale + 0.5f);
+    private int getGatePX(int top_val, int bot_val) {
+        float height;
+        if (top_val == 1) {
+            height = 0;
+        } else if (bot_val == 1) {
+            height = getResources().getDimension(com.intuit.sdp.R.dimen._160sdp);
+        } else {
+            height = getResources().getDimension(com.intuit.sdp.R.dimen._80sdp);
+        }
+        return (int) height;
     }
 
     @Override

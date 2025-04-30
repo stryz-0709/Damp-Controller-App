@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -45,15 +46,12 @@ import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import android.Manifest;
-import androidx.core.content.ContextCompat;
-import androidx.core.app.ActivityCompat;
 
 public class MainActivity extends AppCompatActivity {
     private static final int INTERNET_SETTINGS_REQUEST = 0;
@@ -131,7 +129,12 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (isGatePressed[index] == 0) {
-                        startActivityForResult(new Intent(Settings.Panel.ACTION_INTERNET_CONNECTIVITY), INTERNET_SETTINGS_REQUEST);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {  // Android 10 (API level 29)
+                            startActivityForResult(new Intent(Settings.Panel.ACTION_INTERNET_CONNECTIVITY), INTERNET_SETTINGS_REQUEST);
+                        } else {
+                            // Fallback for Android 9 or lower, you can open Wi-Fi settings as a workaround
+                            startActivityForResult(new Intent(Settings.ACTION_WIFI_SETTINGS), INTERNET_SETTINGS_REQUEST);
+                        }
                     }
                     else if (isGatePressed[index] == 1) {
                         if (isManager[index] == 0) passwordPopup("height", h1, h2);
@@ -167,26 +170,45 @@ public class MainActivity extends AppCompatActivity {
 
     private void refreshStatus() {
         Handler handler = new Handler();
+        final String[] previousSSID = {""};
+
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < 20; i++) {
-                    // Make button RED if not connected to Wifi,
-                    // Make button YELLOW if device is connected but not set up
-                    // Make button GREEN if device is ready
+                String currentSSID = getWifi();
 
-                    if (checkWifi("Cổng " + String.valueOf(i + 1))){
-                        getWaterInfo(i + 1);
-                        gateSelect(i, (h1 < 0 || h2 < 0)? 1 : 2);
-                        Log.d("JSON", String.valueOf(h1));
-                        Log.d("JSON", String.valueOf(h2));
-                        selectedGate = i + 1;
+            if (!currentSSID.equals(previousSSID[0])) {
+                previousSSID[0] = currentSSID;
+
+                if (currentSSID.startsWith("Cổng ")) {
+                    String[] parts = currentSSID.split(" ");
+                    if (parts.length == 2) {
+                        try {
+                            selectedGate = Integer.parseInt(parts[1]);
+                        } catch (NumberFormatException ignored) {
+                            selectedGate = -1;
+                        }
                     }
-                    else gateSelect(i, 0);
+                } else {
+                    selectedGate = -1;
                 }
-                handler.postDelayed(this, 2000);  // Repeat every 2 seconds
+            }
+
+            for (int i = 0; i < 20; i++) {
+                if (i == selectedGate - 1 && selectedGate > 0) {
+                    getWaterInfo(selectedGate);
+                    gateSelect(i, (h1 < 0 || h2 < 0)? 1 : 2);
+                    Log.d("JSON", String.valueOf(h1));
+                    Log.d("JSON", String.valueOf(h2));
+                } else {
+                    gateSelect(i, 0);
+                }
+            }
+
+                handler.postDelayed(this, 2000); // Check every 2 seconds
             }
         };
+
         handler.post(runnable);
     }
 
@@ -261,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
             debugIn = jsonObject.getInt("debugIn");
             debugOut = jsonObject.getInt("debugOut");
 
-            gateMode = jsonObject.getString("gateMode");
+            gateMode = jsonObject.getString("waterMode");
             gateStatus = jsonObject.getString("gateStatus");
 
             ///h1///
@@ -280,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public boolean checkWifi(String ssid) {
+    public String getWifi() {
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         String currentSsid = wifiInfo.getSSID();
@@ -288,8 +310,7 @@ public class MainActivity extends AppCompatActivity {
 
         currentSsid = currentSsid.replace("\"", ""); // Remove quotes
 
-
-        return currentSsid.equals(ssid);
+        return currentSsid;
     }
 
     public void checkPassword(String password, int buttonNumber, PasswordCheckCallback callback) {
@@ -425,8 +446,10 @@ public class MainActivity extends AppCompatActivity {
         popupButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int tempH1 = Integer.parseInt(heightValue.getSelectedItem().toString());
-                int tempH2 = Integer.parseInt(height2Value.getSelectedItem().toString());
+                String stringH1 = heightValue.getSelectedItem().toString();
+                String stringH2 = height2Value.getSelectedItem().toString();
+                int tempH1 = !stringH1.equals("CN")? Integer.parseInt(stringH1) : -1;
+                int tempH2 = !stringH2.equals("CN")? Integer.parseInt(stringH2) : -1;
 
                 if (tempH1 < 0) {
                     errorText.setText("Vui lòng nhập Mực chênh lệch H1");
@@ -492,8 +515,10 @@ public class MainActivity extends AppCompatActivity {
         popupButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int tempDebugIn = Integer.parseInt(debugInValue.getSelectedItem().toString());
-                int tempDebugOut = Integer.parseInt(debugOutValue.getSelectedItem().toString());
+                String stringIn = debugInValue.getSelectedItem().toString();
+                String stringOut = debugOutValue.getSelectedItem().toString();
+                int tempDebugIn = !stringIn.equals("CN")? Integer.parseInt(stringIn) : -1;
+                int tempDebugOut = !stringOut.equals("CN")? Integer.parseInt(stringOut) : -1;
 
                 if (tempDebugIn < 0) {
                     errorText.setText("Vui lòng nhập Mực nước ao");

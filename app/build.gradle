@@ -8,10 +8,10 @@ android {
 
     defaultConfig {
         applicationId "com.aasolution.dapsontien"
-        minSdk 29
+        minSdk 28
         targetSdk 34
         versionCode 1
-        versionName "1.0"
+        versionName "3.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.androidplot:androidplot-core:1.5.11'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -78,6 +78,6 @@ dependencies {
     implementation 'com.github.abdularis:TapHoldUpButton:0.1.2'
 
     implementation 'org.nanohttpd:nanohttpd:2.3.1'
-
+    implementation 'com.intuit.sdp:sdp-android:1.1.1'
 
 }
